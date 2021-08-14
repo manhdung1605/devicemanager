@@ -1,0 +1,40 @@
+<div class="containner">
+  <div class="login">
+    <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="user">
+            <input nz-input type="text" id="username" formControlName="username" placeholder="Nhập tên đăng nhập">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input nz-input type="password" id="password" formControlName="password"
+              (ngModelChange)="updateConfirmValidator()" placeholder="Nhập mật khẩu" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="errorTpl">
+          <nz-input-group nzPrefixIcon="lock">
+            <input nz-input type="password" placeholder="Xác nhận mật khẩu" formControlName="checkPassword"
+              id="checkPassword" />
+            <ng-template #errorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">Mời bạn nhập mật khẩu!</ng-container>
+              <ng-container *ngIf="control.hasError('confirm')">
+                Two passwords that you enter is inconsistent!
+              </ng-container>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="button" nzType="primary">Đăng ký</button>
+      Bạn đã có tài khoản rồi?
+      <a routerLink="/auth/login"> Đăng nhập ngay</a>
+
+    </form>
+  </div>
+</div>

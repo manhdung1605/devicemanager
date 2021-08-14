@@ -1,0 +1,33 @@
+<div class="containner">
+  <div class="login">
+    <h2>ĐĂNG NHẬP HỆ THỐNG</h2>
+    <form nz-form [formGroup]="form" class="login-form" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="username" placeholder="Nhập tên đăng nhập" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="Nhập mật khẩu" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+        <div nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">
+            <span>Nhớ mật khẩu</span>
+          </label>
+        </div>
+        <!-- <div nz-col [nzSpan]="12">
+          <a class="login-form-forgot">Forgot password</a>
+        </div> -->
+    
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Đăng nhập</button>
+      Bạn chưa có tài khoản?
+      <a routerLink="/auth/register"> Đăng ký ngay</a>
+    </form>
+  </div>
+</div>

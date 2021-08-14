@@ -1,0 +1,22 @@
+<h1>Danh sách các thiết bị</h1>
+<nz-table  [nzData]="devices">
+    <thead>
+      <tr>
+        <th>Tên thiết bị</th>
+        <th>IMEI</th>
+        <th>Trọng Lượng (kg)</th>
+        <th>Kinh độ</th>
+        <th>Vĩ độ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let device of devices">
+        <td>{{ device.name }}</td>
+        <td>{{ device.imei }}</td>
+        <td>{{ device.weight}}</td>
+        <td>{{ device.longtitude}}</td>
+        <td>{{ device.latitude}}</td>
+       
+      </tr>
+    </tbody>
+  </nz-table>
