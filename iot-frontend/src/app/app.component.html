@@ -1,7 +1,7 @@
 <nz-layout class="app-layout">
 
   <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null">
+    [nzTrigger]="null" *ngIf="showSider">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
@@ -70,7 +70,7 @@
   </nz-sider>
 
   <nz-layout>
-    <nz-header>
+    <nz-header *ngIf="showSider">
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>

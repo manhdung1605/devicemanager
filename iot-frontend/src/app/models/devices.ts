@@ -6,12 +6,16 @@ export class Devices {
     longtitude !: number;
     latitude !: number;
 
-    constructor (name : string, imei : string, weight : number, longtitude : number ,latitude : number) {
-            this.name = name;
-            this.imei = imei;
-            this.weight  = weight;
-            this.latitude = latitude;
-            this.longtitude = longtitude;
-        }
+    constructor() {
+
+    }
+    Devices(name: string, imei: string, weight: number, longtitude: number, latitude: number) {
+        this.name = name;
+        this.imei = imei;
+        this.weight = weight;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
+    }
+
 
 }

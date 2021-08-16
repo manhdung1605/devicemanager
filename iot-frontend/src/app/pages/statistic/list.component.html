@@ -1,22 +1,97 @@
 <h1>Danh sách các thiết bị</h1>
-<nz-table  [nzData]="devices">
-    <thead>
-      <tr>
-        <th>Tên thiết bị</th>
-        <th>IMEI</th>
-        <th>Trọng Lượng (kg)</th>
-        <th>Kinh độ</th>
-        <th>Vĩ độ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let device of devices">
-        <td>{{ device.name }}</td>
-        <td>{{ device.imei }}</td>
-        <td>{{ device.weight}}</td>
-        <td>{{ device.longtitude}}</td>
-        <td>{{ device.latitude}}</td>
-       
-      </tr>
-    </tbody>
-  </nz-table>
+<div>
+  <button nz-button nzType="primary" (click)="addDevice()">
+    <span>Thêm thiết bị</span>
+  </button>
+</div>
+<nz-table [nzData]="devices">
+  <thead>
+    <tr>
+      <th>Tên thiết bị</th>
+      <th>IMEI</th>
+      <th>Trọng Lượng (kg)</th>
+      <th>Kinh độ</th>
+      <th>Vĩ độ</th>
+      <th>Chỉnh sửa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let device of devices">
+      <td>{{ device.name }}</td>
+      <td>{{ device.imei }}</td>
+      <td>{{ device.weight}}</td>
+      <td>{{ device.longtitude}}</td>
+      <td>{{ device.latitude}}</td>
+      <td>
+        <button nz-button class="update" nzType="primary" (click)="onEdit(device)">Sửa</button>
+        <button nz-button nzType="primary" nzDanger (click)="delete(device.id)">Xóa</button>
+      </td>
+
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="520" [nzVisible]="visible"
+  nzTitle="Thông tin thiết bị" [nzFooter]="footerTpl" (nzOnClose)="close()">
+  <form nz-form *nzDrawerContent [formGroup]="form">
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-control>
+          <input type="hidden" formControlName="id" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Tên thiết bị</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="Nhập tên thiết bị" formControlName="name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>IMEI</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="Nhập IMEI của thiết bị" formControlName="imei" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Trọng lượng</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzAddOnAfter="(kg)">
+            <input type="number" nz-input placeholder="Nhập trọng lượng" formControlName="weight" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Kinh độ</nz-form-label>
+        <nz-form-control>
+          <input type="number" nz-input placeholder="Nhập kinh độ của thiết bị" formControlName="longtitude" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>Vĩ độ</nz-form-label>
+        <nz-form-control>
+          <input type="number" nz-input placeholder="Nhập vĩ độ của thiết bị" formControlName="latitude" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+  </form>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Hủy</button>
+      <button nz-button *ngIf="showAdd" nzType="primary" (click)="close()" (click)="createDevice()">Thêm</button>
+      <button nz-button *ngIf="showUpdate" nzType="primary" (click)="close()" (click)="updateDevice()">Cập nhật</button>
+    </div>
+  </ng-template>
+</nz-drawer>

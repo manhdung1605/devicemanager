@@ -47,13 +47,22 @@ export class ApiService {
     });
   }
 
-  createDevice(name : string, imei : string, weight : number, longtitude : number ,latitude : number): Observable<Devices> {
+  postDevice(name : string, imei : string, weight : number, longtitude : number ,latitude : number): Observable<Devices> {
     return this.http.post<Devices>(`${this.API_URL}/devices`, {name,imei,weight,longtitude,latitude}, {
       headers: {
         Authorization: `Bearer ${this.token}`
       }
     });
   }
+
+  putDevice(id: number, name : string, imei : string, weight : number, longtitude : number ,latitude : number): Observable<Devices> {
+    return this.http.put<Devices>(`${this.API_URL}/devices/${id}`,{id,name,imei,weight,longtitude,latitude}, {
+      headers: {
+        Authorization: `Bearer ${this.token}`
+      }
+    });
+  }
+
 
   // updateStatus(statusValue: string, todoId: number) {
   //   return this.http.patch(`${this.API_URL}/todos/${todoId}`, {status: statusValue}, {
@@ -100,7 +109,7 @@ export class ApiService {
           }).onHidden.toPromise().then(() => {
             this.jwtToken$.next(this.token);
             localStorage.setItem('act', btoa(this.token));
-            this.router.navigateByUrl('/').then();
+            this.router.navigateByUrl('/location').then();
           });
         }
       }, (err: HttpErrorResponse) => {
@@ -118,7 +127,7 @@ export class ApiService {
       timeOut: 500
     }).onHidden.subscribe(() => {
       localStorage.removeItem('act');
-      this.router.navigateByUrl('/login').then();
+      this.router.navigateByUrl('/auth/login').then();
     });
     return '';
   }
