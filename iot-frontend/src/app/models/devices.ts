@@ -16,6 +16,7 @@ export class Devices {
         this.latitude = latitude;
         this.longtitude = longtitude;
     }
+ 
 
 
 }

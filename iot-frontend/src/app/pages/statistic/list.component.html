@@ -1,22 +1,32 @@
 <h1>Danh sách các thiết bị</h1>
-<div>
-  <button nz-button nzType="primary" (click)="addDevice()">
-    <span>Thêm thiết bị</span>
-  </button>
+<div class="action-device">
+  <div class="add-device">
+    <button nz-button nzType="primary" (click)="addDevice()">
+      <span>Thêm thiết bị</span>
+    </button>
+  </div>
+  <div class="search-device">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input type="text" nz-input [(ngModel)]="searchValue" placeholder="Nhập tên thiết bị" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary"nzSize="small"  nzSearch>Tìm kiếm</button>
+    </ng-template>
+  </div>
 </div>
-<nz-table [nzData]="devices">
+<nz-table [nzData]="devices" nzBordered  [nzPageSize]="5" [nzScroll]="{ y: '240px' }">
   <thead>
     <tr>
-      <th>Tên thiết bị</th>
-      <th>IMEI</th>
-      <th>Trọng Lượng (kg)</th>
-      <th>Kinh độ</th>
-      <th>Vĩ độ</th>
+      <th >Tên thiết bị</th>
+      <th nzWidth=150px>IMEI</th>
+      <th nzWidth=150px>Trọng Lượng (kg)</th>
+      <th nzWidth=120px>Kinh độ</th>
+      <th nzWidth=120px>Vĩ độ</th>
       <th>Chỉnh sửa</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let device of devices">
+    <tr *ngFor="let device of devices | searchfilter : searchValue">
       <td>{{ device.name }}</td>
       <td>{{ device.imei }}</td>
       <td>{{ device.weight}}</td>

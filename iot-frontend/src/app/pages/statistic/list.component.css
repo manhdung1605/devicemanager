@@ -1,3 +1,18 @@
 .update{
     margin-right: 10px;
 }
+.action-device{
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+.add-device{
+    float: left;
+    margin-left: 0px;
+    margin-right: 400px;
+    width: 200px;
+}
+.search-device{
+    float: right;
+    margin-right: 10px;
+}

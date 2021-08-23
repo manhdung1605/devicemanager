@@ -39,8 +39,8 @@ export class ApiService {
     });
   }
 
-  getOneDevice(id : number): Observable<Devices> {
-    return this.http.get<Devices>(`${this.API_URL}/devices/${id}`, {
+  getOneDevice(id : number): Observable<Devices[]> {
+    return this.http.get<Devices[]>(`${this.API_URL}/devices/${id}`, {
       headers: {
         Authorization: `Bearer ${this.token}`
       }

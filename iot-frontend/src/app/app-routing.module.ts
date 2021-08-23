@@ -1,5 +1,6 @@
 import { RegisterComponent } from './auth/register/register.component';
 import { LocationComponent } from './pages/location/location.component';
+import { ChartComponent } from './pages/chart/chart.component';
 // import { LoginComponent } from './auth/login/login.component';
 // import { StatisticComponent } from './pages/statistic/statistic.component';
 import { NgModule } from '@angular/core';
@@ -14,10 +15,15 @@ const routes: Routes = [
     component: LocationComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'chart',
+    component: ChartComponent,
+    canActivate: [AuthGuard]
+  },
   // {
   //   path: '**',
   //   pathMatch: 'full',
-  //   redirectTo: ''
+  //   redirectTo: 'auth/login'
   // },
   { path: 'auth', loadChildren: authModule },
   { path: 'device', loadChildren: deviceModule, canActivate: [AuthGuard] },

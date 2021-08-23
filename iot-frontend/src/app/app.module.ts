@@ -1,3 +1,5 @@
+import { ChartsModule } from './pages/chart/chart.module';
+
 // import { StatisticComponent } from './pages/statistic/list.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LocationComponent } from './pages/location/location.component';
@@ -26,7 +28,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     // LoginComponent,
-    LocationComponent,
+    // LocationComponent,
     // RegisterComponent,
     //StatisticComponent,
   ],
@@ -35,14 +37,17 @@ registerLocaleData(en);
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
+
+
+
+
     ToastrModule.forRoot(),
     NgZorroAntdModule,
 
-   
+
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

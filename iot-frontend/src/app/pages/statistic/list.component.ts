@@ -1,6 +1,5 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
-import { HttpClient } from '@angular/common/http';
 import { Devices } from '../../models/devices';
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -18,6 +17,7 @@ export class ListComponent implements OnInit {
   showAdd !: boolean;
   showUpdate !: boolean;
   visible = false;
+  searchValue !: string;
   constructor(private api: ApiService, private fb: FormBuilder, private message: NzMessageService) { }
 
   ngOnInit() {
@@ -39,6 +39,7 @@ export class ListComponent implements OnInit {
     this.api.getAllDevices().subscribe(
       data => {
         this.devices = data;
+        // console.log(data);
       },
       err => {
         console.log(err);
