@@ -20,11 +20,11 @@ const routes: Routes = [
     component: ChartComponent,
     canActivate: [AuthGuard]
   },
-  // {
-  //   path: '**',
-  //   pathMatch: 'full',
-  //   redirectTo: 'auth/login'
-  // },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'auth/login'
+  },
   { path: 'auth', loadChildren: authModule },
   { path: 'device', loadChildren: deviceModule, canActivate: [AuthGuard] },
   // {

@@ -64,6 +64,6 @@ export class DeviceService {
             return await this.repo.delete({id});
         } catch (err) {
             throw new InternalServerErrorException('Something wrong in delete');
-        }
+        } 
     }
 }

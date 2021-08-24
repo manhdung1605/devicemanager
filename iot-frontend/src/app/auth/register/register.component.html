@@ -1,7 +1,7 @@
 <div class="containner">
   <div class="login">
     <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
       <nz-form-item>
         <nz-form-control>
           <nz-input-group nzPrefixIcon="user">
@@ -10,13 +10,16 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your password!">
+        <nz-form-control nzErrorTip="Mật khẩu bao gồm ít nhất 8 ký tự (ít nhất một chữ hoa và một số)">
           <nz-input-group nzPrefixIcon="lock">
             <input nz-input type="password" id="password" formControlName="password"
               (ngModelChange)="updateConfirmValidator()" placeholder="Nhập mật khẩu" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <!-- <div *ngIf="form.controls['password'].errors" style="color: red;">
+          Mật khẩu phải bao gồm ít nhất 8 ký tự (ít nhất một chữ hoa, một chữ thường và một số)
+     </div> -->
       <nz-form-item>
         <nz-form-control [nzErrorTip]="errorTpl">
           <nz-input-group nzPrefixIcon="lock">
@@ -25,7 +28,7 @@
             <ng-template #errorTpl let-control>
               <ng-container *ngIf="control.hasError('required')">Mời bạn nhập mật khẩu!</ng-container>
               <ng-container *ngIf="control.hasError('confirm')">
-                Two passwords that you enter is inconsistent!
+               Mật khẩu nhập lại không chính xác !
               </ng-container>
             </ng-template>
           </nz-input-group>

@@ -118,7 +118,29 @@ export class ApiService {
         });
       });
   }
+  register(username: string, password: string) {
 
+    this.http.post(`${this.API_URL}/auth/register`, {username, password})
+
+      .subscribe((res: any) => {
+        this.token = res.token;
+
+      //  if (this.token) {
+          this.toast.success('Login successful, redirecting now...', '', {
+            timeOut: 700,
+            positionClass: 'toast-top-center'
+          }).onHidden.toPromise().then(() => {
+            this.jwtToken$.next(this.token);
+            localStorage.setItem('act', btoa(this.token));
+            this.router.navigateByUrl('/auth/login').then();
+          });
+       // }
+      }, (err: HttpErrorResponse) => {
+        this.toast.error('Registingfailed, try again', '', {
+          timeOut: 1000
+        });
+      });
+  }
 
   logout() {
     this.token = '';

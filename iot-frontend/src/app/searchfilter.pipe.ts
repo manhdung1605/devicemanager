@@ -1,4 +1,4 @@
-import { Devices } from './../../../smartiot/iot-frontend/src/app/models/devices';
+import { Devices } from './models/devices';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
       const { username, password } = this.form.value;
       this.api.login(username, password);
       this.message.create('success', 'Đăng nhập thành công');
-      ;
       this.isLogined = true;
       console.log('login success');
       this.router.navigateByUrl('/device');
