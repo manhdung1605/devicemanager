@@ -77,7 +77,7 @@
         </span>
         <span class="spacer"></span>
         <span (click)="logout()">
-          <a routerLink="/auth/login"> <i class="logout" nz-icon nzType="logout"></i></a>
+          <a routerLink="/auth/login"> <i class="logout" nz-icon nzType="logout" nz-tooltip nzTooltipTitle="Đăng xuất"></i></a>
         </span>
       </div>
     </nz-header>
@@ -86,6 +86,8 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
+    <nz-layout>
+    <nz-footer style="text-align: center;">©2021   <a href="https://www.facebook.com/dung.phung.98499" target="_blank">DungPhung</a>. All Right Reserved.</nz-footer></nz-layout>
   </nz-layout>
 </nz-layout>
 
