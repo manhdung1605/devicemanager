@@ -12,7 +12,7 @@ import {tap} from 'rxjs/operators';
 export class ApiService {
   private token = '';
   private jwtToken$ = new BehaviorSubject<string>(this.token);
-  private API_URL = 'http://localhost:3000/api';
+  private API_URL = 'https://iot-backendx.herokuapp.com/api';
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -126,7 +126,7 @@ export class ApiService {
         this.token = res.token;
 
       //  if (this.token) {
-          this.toast.success('Login successful, redirecting now...', '', {
+          this.toast.success(' successful, redirecting now...', '', {
             timeOut: 700,
             positionClass: 'toast-top-center'
           }).onHidden.toPromise().then(() => {

@@ -12,13 +12,13 @@ export class DeviceEntity {
     @Column()
     imei : string;
 
-    @Column()
+    @Column({type: "double precision"})
     longtitude : number;
 
-    @Column()
+    @Column({type: "double precision"})
     latitude :  number;
 
-    @Column()
+    @Column({type: "double precision"})
     weight :number;
 
     // @ManyToOne(() => UserEntity, (user: UserEntity) => user.devices )

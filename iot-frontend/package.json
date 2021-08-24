@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.1.1",
+    "@angular/cli": "~12.1.1",
+    "@angular/compiler-cli": "~12.1.1",
     "@angular/common": "~12.1.1",
     "@angular/compiler": "~12.1.1",
     "@angular/core": "~12.1.1",
@@ -20,12 +23,14 @@
     "@angular/router": "~12.1.1",
     "@swimlane/ngx-charts": "^18.0.1",
     "angular-highcharts": "^12.0.0",
+    "express": "^4.17.1",
     "highcharts": "^9.2.1",
     "highcharts-angular": "^2.10.0",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.4.1",
     "ng-zorro-antd": "^12.0.1",
     "ngx-toastr": "^14.1.0",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "toastr": "^2.1.4",
     "tslib": "^2.2.0",
@@ -45,5 +50,9 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": "12.18.4",
+    "npm": "6.14.6"
   }
 }
