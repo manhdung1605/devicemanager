@@ -1,4 +1,4 @@
 #map {
-    width: 100%;
+    width: inherit;
     height: 400px;
 }

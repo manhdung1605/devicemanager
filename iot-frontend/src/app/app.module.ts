@@ -40,10 +40,6 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     IconsProviderModule,
-
-
-
-
     ToastrModule.forRoot(),
     NgZorroAntdModule,
 

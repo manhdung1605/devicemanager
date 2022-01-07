@@ -50,18 +50,17 @@
             <a routerLink="/chart">Nhiệt độ</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a >Độ ẩm</a>
+            <a>Độ ẩm</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a >Độ PH</a>
+            <a>Độ PH</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a >NH<sub>4</sub> </a>
+            <a>NH<sub>4</sub> </a>
           </li>
         </ul>
       </li>
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''"
-        >
+      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="isCollapsed ? 'Navigation One' : ''">
         <i nz-icon nzType="history"></i>
         <span>Lịch sử quan trắc</span>
       </li>
@@ -71,14 +70,17 @@
 
   <nz-layout>
     <nz-header *ngIf="showSider">
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-        </span>
-        <span class="spacer"></span>
-        <span (click)="logout()">
-          <a routerLink="/auth/login"> <i class="logout" nz-icon nzType="logout" nz-tooltip nzTooltipTitle="Đăng xuất"></i></a>
-        </span>
+      <div class="app-header" nz-row>
+        <div nz-col nzSpan="2"> <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+          </span></div>
+        <div nz-col nzSpan="20">
+          <marquee class="marquee">HỆ THỐNG QUAN TRẮC NGUỒN NƯỚC TỰ ĐỘNG TẠI ĐẦM NUÔI TÔM</marquee>
+        </div>
+        <div nz-col nzSpan="2"> <span (click)="logout()">
+            <a routerLink="/auth/login"> <i class="logout" nz-icon nzType="logout" nz-tooltip
+                nzTooltipTitle="Đăng xuất"></i></a>
+          </span></div>
       </div>
     </nz-header>
     <nz-content>
@@ -86,8 +88,10 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-layout>
-    <nz-footer style="text-align: center;">©2021   <a href="https://www.facebook.com/dung.phung.98499" target="_blank">DungPhung</a>. All Right Reserved.</nz-footer></nz-layout>
+    <nz-layout class="nzlayout">
+      <nz-footer style="text-align: center; height: 10px;">©2021 <a href="https://www.facebook.com/dung.phung.98499"
+          target="_blank">DungPhung</a>. All Right Reserved.</nz-footer>
+    </nz-layout>
   </nz-layout>
 </nz-layout>
 

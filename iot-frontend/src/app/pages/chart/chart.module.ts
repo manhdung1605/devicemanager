@@ -8,6 +8,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
@@ -19,7 +21,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
         NgZorroAntdModule,
         FormsModule,
         HighchartsChartModule,
-    
+        HttpClientModule,
+        ToastrModule.forRoot()
     ],
     declarations: [
         ChartComponent,

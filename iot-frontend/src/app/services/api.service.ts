@@ -13,7 +13,7 @@ export class ApiService {
   private token = '';
   private jwtToken$ = new BehaviorSubject<string>(this.token);
   private API_URL = 'https://iot-backendx.herokuapp.com/api';
-
+  private data = 'https://drive.google.com/drive/my-drive/DATASET_2019-trainFinal.csv'
   constructor(private http: HttpClient,
               private router: Router,
               private toast: ToastrService) {
@@ -29,7 +29,9 @@ export class ApiService {
   get jwtUserToken(): Observable<string> {
     return this.jwtToken$.asObservable();
   }
-
+  getInfo(){
+    return this.http.get(this.data,{responseType: 'text'});
+  }
   /* Getting All Todos */
   getAllDevices(): Observable<Devices[]> {
     return this.http.get<Devices[]>(`${this.API_URL}/devices`, {

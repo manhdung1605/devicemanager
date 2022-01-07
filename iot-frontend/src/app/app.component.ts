@@ -11,7 +11,7 @@ import jwtDecode from 'jwt-decode';
 export class AppComponent {
   isCollapsed = false;
   isLogedin = true;
-  showSider =true;
+  showSider = true;
   username = '';
 
   constructor(private apiService: ApiService) {

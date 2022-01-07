@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { multi } from './dataChart';
 import * as Highcharts from 'highcharts';
-import HC_map from 'highcharts/modules/map';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { ToastrService } from 'ngx-toastr';
+import { isVariableStatement } from 'typescript';
+import { ApiService } from './../../services/api.service';
+
 
 @Component({
   selector: 'app-chart',
@@ -10,125 +13,119 @@ import HC_map from 'highcharts/modules/map';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  Highcharts = Highcharts;
+  Highcharts: typeof Highcharts = Highcharts;
   updateFlag = true;
-  chartOptions: any;
-  constructor() {
-    this.chartOptions = {
-      series !: [
-        {
-          type: 'spline',
-          name: 'Nhiệt độ',
-          data: (function () {
-            // generate an array of random data
-            var data = [],
-              time = (new Date()).getTime(),
-              i;
+  undertemp = false;
+  datas: any = [];
+  constructor(private api: ApiService, private toasrt: ToastrService, private mess : NzMessageService,
+  ) { }
+  test() {
+    for (let i = 1; i < 1000; i++) {
+      let y = Math.floor(Math.random() * 20) + 15;
+      console.log(y);
 
-            for (i = -19; i <= 0; i += 1) {
-              data.push({
-                x: time + i * 500,
-                y: Math.floor(Math.random() * 20) + 15,
-              });
-            }
-            return data;
-          }())
-        }
-      ],
-      chart: {
-        type: 'spline',
-        // animation: Highcharts.svg, // don't animate in old IE
-        marginRight: 10,
-        // events: {
-        //   load: (function (component) {
-        //     return function () {
-        //       var series = this.series[0];
-
-        //       setInterval(() => {
-        //         var x = (new Date()).getTime(),
-        //           y = Math.floor(Math.random() * 20) + 15;
-        //         series.addPoint([x, y], true, true);
-        //       }, 500);
-        //     };
-        //   })(this)
-        // },
-        events: {
-          load: () => {
-
-            // set up the updating of the chart each second
-            var series = this.chartOptions.series[0];
-
-            setInterval(function () {
-              var x = (new Date()).getTime() // now
-              var y = Math.floor(Math.random() * 20) + 15;
-
-             // series.addPoint([x, y], true, true);
-              //series.data.push([x,y]);
-              //series.data.shift();
-             // console.log(x,y)
-            }, 500);
-          }
-        }
-      },
-
-
-      time: {
-        useUTC: false
-      },
-
-      title: {
-        text: 'Nhiệt độ theo thời gian thực'
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true,
-          minAnnounceInterval: 15000,
-          announcementFormatter: function (allSeries: any, newSeries: any, newPoint: any) {
-            if (newPoint) {
-              return 'New point added. Value: ' + newPoint.y;
-            }
-            return false;
-          }
-        }
-      },
-
-      xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 100
-      },
-
-      yAxis: {
-        title: {
-          text: 'Temporature'
-        },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
-        }]
-      },
-
-      tooltip: {
-        headerFormat: '<b>{series.name}</b><br/>',
-        pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
-      },
-
-      legend: {
-        enabled: false
-      },
-
-      exporting: {
-        enabled: false
-      },
-
-
+      if (y < 24) {
+        //console.log("Nhiệt độ vượt ngưỡng cho phép");
+        this.mess.warning("Nhiệt độ dưới mức ngưỡng cho phép");
+      }
     }
   }
+  chartOptions: Highcharts.Options = {
+    series: [
+      {
+        type: 'spline',
+        name: 'Nhiệt độ',
+        data: (function () {
+          // generate an array of random data
+          var data = [], time = (new Date()).getTime(), i;
+          for (i = -19; i <= 0; i += 1) {
+            data.push({
+              x: time + i * 500,
+              y: Math.floor(Math.random() * 20) + 15,
+            });
+          }
+          return data;
+        }())
+      }
+    ],
+    chart: {
+      type: 'spline',
+
+      marginRight: 10,
+
+      events: {
+        load: function () {
+          // set up the updating of the chart each second
+          var series = this.series[0];
+          var mess : NzMessageService;
+          setInterval(() => {
+
+            let x = (new Date()).getTime() // now
+            let y = Math.floor(Math.random() * 20) + 15;
+            //console.log(x,y);
+
+            if (y < 24) {
+              //console.log("Nhiệt độ vượt ngưỡng cho phép");
+              //toasrt.error("Hello, I'm the toastr message.");
+            //  mess.warning("Nhiệt độ vượt ngưỡng cho phép");
+            }
+            series.addPoint([x, y]);
+          }, 500);
+        }
+      }
+    },
+    time: {
+      useUTC: false
+    },
+
+    title: {
+      text: 'Nhiệt độ theo thời gian thực'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      tickPixelInterval: 100
+    },
+
+    yAxis: {
+      title: {
+        text: 'Temporature'
+      },
+      plotLines: [{
+        value: 0,
+        width: 1,
+        color: '#808080'
+      }]
+    },
+
+    tooltip: {
+      headerFormat: '<b>{series.name}</b><br/>',
+      pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+    },
+
+    legend: {
+      enabled: false
+    },
+
+    exporting: {
+      enabled: false
+    },
+  }
   ngOnInit() {
-    HC_map(Highcharts);
+    this.test();
+    this.getData();
+  }
+  getData(){
+    this.api.getInfo().subscribe(datas => {
+      const list = datas.split('\n');
+     list.forEach(e => {
+       this.datas.push(e);
+     }) 
+    })
   }
 }
+
+
 
 
 
